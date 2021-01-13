@@ -27,6 +27,9 @@ const Wrapper = styled.div`
 //Blender跟gltf的世界座標軸 mapping (x,y,z) -> glTF(x,z,-y)
 //Light跟Light_Orientation，Light_Orientation是因為blender匯出gltf坐標軸不同產生的
 
+// Set receiveShadow on any mesh that should be in shadow,
+// and castShadow on any mesh that should create a shadow.
+
 const LightTest = ()=> {
 
   const lightGltf = useLoader(GLTFLoader, gltf, (loader) => {
@@ -65,41 +68,51 @@ const LightTest = ()=> {
         geometry={nodes.Plane.geometry}
         material={nodes.Plane.material}
         position={[0,-13.245,0]}
+        castShadow 
         receiveShadow
       />
       <mesh
         geometry={nodes.Cube.geometry}
         material={nodes.Cube.material}
         position={[0,-10.043,6.9991]}
-        receiveShadow
+        castShadow 
+        //receiveShadow
       />
       <mesh
         geometry={nodes.Cube001.geometry}
         material={nodes.Cube001.material}
         position={[-9.801, -10.043,6.9991]}
-        receiveShadow
+        castShadow 
+        //receiveShadow
       />
       <mesh
         geometry={nodes.Cube002.geometry}
         material={nodes.Cube002.material}
         position={[9.5795, -10.043,6.9991]}
-        receiveShadow
+        castShadow 
+        //receiveShadow
       />
       <mesh
         geometry={nodes.Cube003.geometry}
         material={nodes.Cube003.material}
         position={[0, -10.043, -6.7244]}
+        castShadow 
+        //receiveShadow
       />
       <mesh
         geometry={nodes.Cube004.geometry}
         material={nodes.Cube004.material}
         position={[-9.801, -10.043, -6.7244]}
+        castShadow 
+        //receiveShadow
       />
       <mesh
         ref={light2Target}
         geometry={nodes.Cube005.geometry}
         material={nodes.Cube005.material}
         position={[9.5795,-10.043,-6.7244]}
+        castShadow 
+        //receiveShadow
       />
 
       <pointLight
@@ -107,6 +120,7 @@ const LightTest = ()=> {
         color={nodes.Point.children[0].color}
         intensity={0.5}
         distance={30}
+        castShadow
       />
 
       <pointLight
@@ -114,6 +128,7 @@ const LightTest = ()=> {
         color={nodes.Point001.children[0].color}
         intensity={0.5}
         distance={30}
+        castShadow
       />
 
       <pointLight
@@ -121,6 +136,7 @@ const LightTest = ()=> {
         color={nodes.Point002.children[0].color}
         intensity={0.5}
         distance={30}
+        castShadow
       />
 
       <primitive 
@@ -132,6 +148,7 @@ const LightTest = ()=> {
         angle={nodes.Spot_Orientation.angle}
         intensity={2}
         decay={2}
+        castShadow
       />
       <primitive 
         object={light0.target}
@@ -163,6 +180,7 @@ const LightTest = ()=> {
         angle={nodes.Spot002_Orientation.angle}
         intensity={2}
         decay={2}
+        castShadow
       />
       <primitive 
         object={light2.target}
