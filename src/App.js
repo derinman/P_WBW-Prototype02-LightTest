@@ -7,11 +7,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
-
-
-
-
 import styled from 'styled-components';
+
+import { softShadows } from "@react-three/drei"
 
 import gltf from './resources/gltf/lightTest_000.glb'
 
@@ -29,6 +27,14 @@ const Wrapper = styled.div`
 
 // Set receiveShadow on any mesh that should be in shadow,
 // and castShadow on any mesh that should create a shadow.
+
+softShadows({
+  frustrum: 3.75, // Frustrum width (default: 3.75)
+  size: 0.4, // World size (default: 0.005)
+  near: 9.5, // Near plane (default: 9.5)
+  samples: 17, // Samples (default: 17)
+  rings: 11, // Rings (default: 11)
+})
 
 const LightTest = ()=> {
 
@@ -115,30 +121,35 @@ const LightTest = ()=> {
         //receiveShadow
       />
 
+      {/*pointLight*/}
       <pointLight
-        position={nodes.Point.position}
+        position={[nodes.Point.position.x,10,nodes.Point.position.z]}
         color={nodes.Point.children[0].color}
-        intensity={0.5}
+        intensity={3}
         distance={30}
+        decay={2}
         castShadow
       />
 
       <pointLight
         position={nodes.Point001.position}
         color={nodes.Point001.children[0].color}
-        intensity={0.5}
+        intensity={0.1}
         distance={30}
+        decay={2}
         castShadow
       />
 
       <pointLight
         position={nodes.Point002.position}
         color={nodes.Point002.children[0].color}
-        intensity={0.5}
+        intensity={0.1}
         distance={30}
+        decay={2}
         castShadow
       />
 
+      {/*spotLight*/}
       <primitive 
         object={light0}
         position={nodes.Spot.position}
@@ -187,11 +198,12 @@ const LightTest = ()=> {
         position={light2TargetPos}
       />
 
+      {/*DirectionalLight*/}
       <primitive 
         object={dirLight0}
         position={nodes.Sun.position}
         color={nodes.Sun.children[0].color}
-        intensity={0.2}
+        intensity={0.05}
         decay={2}
         castShadow
       />
@@ -200,6 +212,7 @@ const LightTest = ()=> {
         position={[nodes.Sun.position.x,nodes.Sun.position.y-1,nodes.Sun.position.z]}
       />
 
+    
     </group>
   )
 }
