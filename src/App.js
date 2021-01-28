@@ -192,11 +192,16 @@ const LightTest = ()=> {
         intensity={2}
         decay={2}
         castShadow
+        shadow-mapSize-height={1024/50}//試試1024/500~1024
+        shadow-mapSize-width={1024/50}//試試1024/500~1024
+        shadow-bias={0.02}//試試0.01~0.07
+        shadow-focus={1.1}//試試0.1~2
       />
       <primitive 
         object={light2.target}
         position={light2TargetPos}
       />
+      
 
       {/*DirectionalLight*/}
       <primitive 
