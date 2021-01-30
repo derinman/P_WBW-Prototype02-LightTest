@@ -186,10 +186,10 @@ const LightTest = ()=> {
         object={light2}
         position={nodes.Spot002.position}
         color={nodes.Spot002.children[0].color}
-        distance={nodes.Spot002.children[0].distance}
-        penumbra={nodes.Spot002.children[0].penumbra}
-        angle={nodes.Spot002_Orientation.angle}
-        intensity={2}
+        distance={nodes.Spot002.children[0].distance}//Default is 0 (no limit)
+        penumbra={nodes.Spot002.children[0].penumbra}//values between zero and 1. Default is zero.
+        angle={nodes.Spot002_Orientation.angle}//upper bound is Math.PI/2
+        intensity={2}//Default is 1
         decay={2}
         castShadow
         shadow-mapSize-height={1024/50}//試試1024/500~1024
